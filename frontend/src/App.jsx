@@ -1,35 +1,100 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { StatusProvider } from "./context/StatusContext";
+import PrivateRoute from "./components/PrivateRoute";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import TripPlannerPage from "./pages/TripPlannerPage";
+import LogbookPage from "./pages/LogbookPage";
+import TripsPage from "./pages/TripsPage";
+import TripDetailPage from "./pages/TripDetailPage";
+import StatusHistoryPage from "./pages/StatusHistoryPage";
+import SettingsPage from "./pages/SettingsPage";
+import "./styles/index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <AuthProvider>
+      <StatusProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
 
-export default App
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/trip-planner"
+              element={
+                <PrivateRoute>
+                  <TripPlannerPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/logbook"
+              element={
+                <PrivateRoute>
+                  <LogbookPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/trips"
+              element={
+                <PrivateRoute>
+                  <TripsPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/trips/:id"
+              element={
+                <PrivateRoute>
+                  <TripDetailPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/status-history"
+              element={
+                <PrivateRoute>
+                  <StatusHistoryPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <SettingsPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </Router>
+      </StatusProvider>
+    </AuthProvider>
+  );
+};
+
+export default App;
