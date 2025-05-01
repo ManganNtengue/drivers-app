@@ -1,0 +1,195 @@
+.log-sheet-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.log-sheet-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.log-sheet-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-sheet-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.log-sheet-certification {
+  display: flex;
+  align-items: center;
+}
+
+.log-certified-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  background-color: #c6f6d5;
+  color: #276749;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+
+.log-certified-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.375rem;
+}
+
+.log-certify-button {
+  padding: 0.5rem 1rem;
+  background-color: #4299e1;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.log-certify-button:hover {
+  background-color: #3182ce;
+}
+
+.log-certify-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.log-sheet-content {
+  padding: 1.5rem;
+}
+
+.log-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.log-info-section {
+  padding: 1.25rem;
+  background-color: #f7fafc;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+}
+
+.log-info-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.75rem;
+}
+
+.log-info-details {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.log-info-details p {
+  margin-bottom: 0.5rem;
+}
+
+.log-info-details p:last-child {
+  margin-bottom: 0;
+}
+
+.log-info-label {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.log-hours-summary {
+  margin-bottom: 1.5rem;
+}
+
+.log-hours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.log-hours-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  text-align: center;
+}
+
+.log-hours-off-duty {
+  background-color: #e9d8fd;
+  color: #553c9a;
+}
+
+.log-hours-sleeper {
+  background-color: #bee3f8;
+  color: #2c5282;
+}
+
+.log-hours-driving {
+  background-color: #c6f6d5;
+  color: #276749;
+}
+
+.log-hours-on-duty {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.log-hours-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.log-hours-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.log-grid-section {
+  margin-bottom: 1.5rem;
+}
+
+.log-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.log-details-section {
+  padding: 1.25rem;
+  background-color: #f7fafc;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+}
+
+.log-details-text {
+  font-size: 0.875rem;
+  color: #4a5568;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .log-sheet-title-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .log-hours-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

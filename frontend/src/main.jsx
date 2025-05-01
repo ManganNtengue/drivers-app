@@ -1,13 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./styles/index.css";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 import App from "./App";
 import axios from "axios";
 
 // Check for token on startup
 const token = localStorage.getItem("token");
+// if (token) {
+//   axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+// }
 if (token) {
-  axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
 
 // Add request interceptor for error handling
@@ -30,9 +33,23 @@ axios.interceptors.response.use(
   }
 );
 
-ReactDOM.render(
+// ReactDOM.createRoot(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );

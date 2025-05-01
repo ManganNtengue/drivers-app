@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCurrentStatus, updateDriverStatus } from "../api/status";
 
-export const useDriverStatus = (pollInterval = 60000) => {
+export const useStatus = (pollInterval = 60000) => {
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

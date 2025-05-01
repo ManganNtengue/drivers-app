@@ -13,3 +13,6 @@ whitenoise
 dj-database-url
 python-decouple
 django-environ
+drf-yasg
+requests
+polyline

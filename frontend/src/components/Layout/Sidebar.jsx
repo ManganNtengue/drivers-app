@@ -1,54 +1,119 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import { getCurrentStatus } from "../api/status";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import {
+  Home,
+  Map,
+  FileText,
+  Truck,
+  Clock,
+  Settings,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
-const StatusContext = createContext(null);
+// Import the CSS file
+import "../../styles/components/layout/sidebar.css";
 
-export const StatusProvider = ({ children }) => {
-  const [currentStatus, setCurrentStatus] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const Sidebar = () => {
+  const [collapsed, setCollapsed] = React.useState(false);
 
-  const fetchStatus = async () => {
-    setLoading(true);
-
-    try {
-      const status = await getCurrentStatus();
-      setCurrentStatus(status);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching status:", err);
-      setError("Failed to fetch driver status");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fetch status on mount
-  useEffect(() => {
-    fetchStatus();
-
-    // Poll for status updates every 60 seconds
-    const interval = setInterval(fetchStatus, 60000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const value = {
-    currentStatus,
-    loading,
-    error,
-    refreshStatus: fetchStatus,
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
   };
 
   return (
-    <StatusContext.Provider value={value}>{children}</StatusContext.Provider>
+    <div
+      className={`sidebar ${
+        collapsed ? "sidebar-collapsed" : "sidebar-expanded"
+      }`}
+    >
+      <div className="sidebar-header">
+        <button onClick={toggleSidebar} className="sidebar-toggle-button">
+          {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+        </button>
+      </div>
+
+      <nav className="sidebar-nav">
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            `sidebar-nav-link ${
+              isActive ? "sidebar-nav-link-active" : "sidebar-nav-link-inactive"
+            }`
+          }
+        >
+          <Home size={20} />
+          {!collapsed && <span className="sidebar-nav-text">Dashboard</span>}
+        </NavLink>
+
+        <NavLink
+          to="/trip-planner"
+          className={({ isActive }) =>
+            `sidebar-nav-link ${
+              isActive ? "sidebar-nav-link-active" : "sidebar-nav-link-inactive"
+            }`
+          }
+        >
+          <Map size={20} />
+          {!collapsed && <span className="sidebar-nav-text">Trip Planner</span>}
+        </NavLink>
+
+        <NavLink
+          to="/logbook"
+          className={({ isActive }) =>
+            `sidebar-nav-link ${
+              isActive ? "sidebar-nav-link-active" : "sidebar-nav-link-inactive"
+            }`
+          }
+        >
+          <FileText size={20} />
+          {!collapsed && <span className="sidebar-nav-text">Logbook</span>}
+        </NavLink>
+
+        <NavLink
+          to="/trips"
+          className={({ isActive }) =>
+            `sidebar-nav-link ${
+              isActive ? "sidebar-nav-link-active" : "sidebar-nav-link-inactive"
+            }`
+          }
+        >
+          <Truck size={20} />
+          {!collapsed && <span className="sidebar-nav-text">Trips</span>}
+        </NavLink>
+
+        <NavLink
+          to="/status-history"
+          className={({ isActive }) =>
+            `sidebar-nav-link ${
+              isActive ? "sidebar-nav-link-active" : "sidebar-nav-link-inactive"
+            }`
+          }
+        >
+          <Clock size={20} />
+          {!collapsed && (
+            <span className="sidebar-nav-text">Status History</span>
+          )}
+        </NavLink>
+
+        <div className="sidebar-footer">
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              `sidebar-nav-link ${
+                isActive
+                  ? "sidebar-nav-link-active"
+                  : "sidebar-nav-link-inactive"
+              }`
+            }
+          >
+            <Settings size={20} />
+            {!collapsed && <span className="sidebar-nav-text">Settings</span>}
+          </NavLink>
+        </div>
+      </nav>
+    </div>
   );
 };
 
-export const useStatus = () => {
-  const context = useContext(StatusContext);
-  if (!context) {
-    throw new Error("useStatus must be used within a StatusProvider");
-  }
-  return context;
-};
+export default Sidebar;

@@ -16,7 +16,7 @@ import TripsPage from "./pages/TripsPage";
 import TripDetailPage from "./pages/TripDetailPage";
 import StatusHistoryPage from "./pages/StatusHistoryPage";
 import SettingsPage from "./pages/SettingsPage";
-import "./styles/index.css";
+import "./App.css";
 
 const App = () => {
   return (

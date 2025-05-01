@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchVehicles } from "../../api/vehicles";
-import { fetchDriverInfo } from "../../api/status";
+import { getDriverInfo } from "../../api/status";
 import PlacesAutocomplete from "./PlacesAutocomplete";
 
 // Import the CSS file

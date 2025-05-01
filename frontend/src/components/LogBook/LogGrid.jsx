@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import StatusButtons from "./StatusButtons";
-import HoursDisplay from "./HoursDisplay";
+import StatusButtons from "../Dashboard/StatusButtons";
+import HoursDisplay from "../Dashboard/HoursDisplay";
 import { getDriverInfo, getCurrentStatus } from "../../api/status";
 
 // Import the CSS file

@@ -1,17 +1,27 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
+// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
+const API_URL =
+  import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api";
 
 export const login = async (credentials) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/login/`, credentials);
+    // const response = await axios.post(`${API_URL}/auth/login/`, credentials);
+    const response = await axios.post(`${API_URL}/token/`, credentials);
 
     // Store token in localStorage
-    if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
+    // if (response.data.token) {
+    //   localStorage.setItem("token", response.data.token);
+    //   axios.defaults.headers.common[
+    //     "Authorization"
+    //   ] = `Token ${response.data.token}`;
+    // }
+
+    if (response.data.access) {
+      localStorage.setItem("token", response.data.access);
       axios.defaults.headers.common[
         "Authorization"
-      ] = `Token ${response.data.token}`;
+      ] = `Bearer ${response.data.access}`;
     }
 
     return response.data.user;
@@ -38,7 +48,8 @@ export const getCurrentUser = async () => {
   }
 
   // Set authorization header
-  axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+  // axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   try {
     const response = await axios.get(`${API_URL}/drivers/me/`);

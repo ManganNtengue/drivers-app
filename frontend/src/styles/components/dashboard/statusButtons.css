@@ -1,0 +1,150 @@
+.status-buttons-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-buttons-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.status-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.status-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.status-button:hover {
+  transform: translateY(-2px);
+}
+
+.status-button-off-duty {
+  background-color: #e9d8fd;
+  color: #553c9a;
+}
+
+.status-button-off-duty:hover {
+  background-color: #d6bcfa;
+}
+
+.status-button-off-duty.active {
+  border-color: #553c9a;
+  box-shadow: 0 0 0 2px rgba(85, 60, 154, 0.2);
+}
+
+.status-button-sleeper {
+  background-color: #bee3f8;
+  color: #2c5282;
+}
+
+.status-button-sleeper:hover {
+  background-color: #90cdf4;
+}
+
+.status-button-sleeper.active {
+  border-color: #2c5282;
+  box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.2);
+}
+
+.status-button-driving {
+  background-color: #c6f6d5;
+  color: #276749;
+}
+
+.status-button-driving:hover {
+  background-color: #9ae6b4;
+}
+
+.status-button-driving.active {
+  border-color: #276749;
+  box-shadow: 0 0 0 2px rgba(39, 103, 73, 0.2);
+}
+
+.status-button-on-duty {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
+.status-button-on-duty:hover {
+  background-color: #fbd38d;
+}
+
+.status-button-on-duty.active {
+  border-color: #9c4221;
+  box-shadow: 0 0 0 2px rgba(156, 66, 33, 0.2);
+}
+
+.status-button-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-button-text {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-button-description {
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+.status-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.status-update-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+}
+
+.status-update-spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #4299e1;
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .status-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
