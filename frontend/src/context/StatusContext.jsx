@@ -25,6 +25,8 @@ export const StatusProvider = ({ children }) => {
 
   // Fetch status on mount
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
     fetchStatus();
 
     // Poll for status updates every 60 seconds

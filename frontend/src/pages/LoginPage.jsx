@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -14,11 +14,17 @@ const LoginPage = () => {
   const [error, setError] = useState(null);
 
   const { login } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   // Get the page they were trying to visit before being redirected to login
   const from = location.state?.from?.pathname || "/dashboard";
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, navigate, from]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -4,6 +4,8 @@ const API_URL =
   import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api";
 
 export const getCurrentStatus = async () => {
+  const token = localStorage.getItem("token");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   try {
     const response = await axios.get(`${API_URL}/current-status/`);
     return response.data;

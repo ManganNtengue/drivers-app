@@ -24,7 +24,7 @@ const TripForm = ({ onPlanTrip }) => {
       try {
         const [vehiclesData, driverData] = await Promise.all([
           fetchVehicles(),
-          fetchDriverInfo(),
+          getDriverInfo(),
         ]);
 
         setVehicles(vehiclesData);
